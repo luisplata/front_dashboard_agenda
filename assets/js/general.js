@@ -1,4 +1,4 @@
-let base_url = 'https://lobasvip.com.ve';
+let base_url = 'https://backend.newpage.peryloth.com/dashboard';
 //let base_url = 'http://localhost:8000';
 let endpoint = base_url + '/index.php/api';
 
