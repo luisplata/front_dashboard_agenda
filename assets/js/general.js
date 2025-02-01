@@ -1,4 +1,5 @@
-let base_url = 'https://backend.newpage.peryloth.com/dashboard';
+let base_url = 'https://backend.newpage.peryloth.com';
+let base_url_front = 'https://backend.newpage.peryloth.com/dashboard';
 //let base_url = 'http://localhost:8000';
 let endpoint = base_url + '/api';
 
