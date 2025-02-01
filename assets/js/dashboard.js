@@ -2,7 +2,7 @@ function loadContent(event, page) {
     event.preventDefault();
 
     const [url, query] = page.split("?");
-    fetch(url)
+    fetch(base_url + "/" + url)
         .then(response => response.text())
         .then(html => {
             document.getElementById('content').innerHTML = html;
