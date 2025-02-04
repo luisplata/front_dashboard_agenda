@@ -1,5 +1,9 @@
 function loadContent(event, page) {
-    event.preventDefault();
+    try{
+        event.preventDefault();
+    }catch (error){
+        console.error('Error al cargar la página:', error);
+    }
 
     const [url, query] = page.split("?");
     fetch(base_url_front + "/" + url)

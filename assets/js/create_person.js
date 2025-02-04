@@ -268,15 +268,16 @@ async function stepServices() {
         nextStep(4);
         return;
     }
-    showLoadingModal();
+
     const services = categoryTree;
-    let token = await getToken();
 
     if (!services || Object.keys(services).length === 0) {
         alert("Debe ingresar al menos un servicio");
-        hideLoadingModal();
         return;
     }
+    showLoadingModal();
+
+    let token = await getToken();
 
     const totalTasks = Object.values(categoryTree).flat().length;
     let completedTasks = 0;
@@ -298,23 +299,17 @@ async function stepServices() {
     hideLoadingModal();
     setStepsSolved(2, true);
     nextStep(4);
+    categoryTree = {};
 }
 
 async function uploadAllPhotos() {
-    if (getStepsSolved(3).solved) {
-        nextStep(4);
-        return;
-    }
-
     const files = document.getElementById("photosInput").files;
     if (files.length === 0) {
-        alert("Por favor, selecciona al menos una foto antes de continuar.");
         return;
     }
     showLoadingModal();
 
     const uploadedPhotosContainer = document.getElementById("uploadedPhotos");
-    uploadedPhotosContainer.innerHTML = "";
 
     let token = await getToken();
     let personId = person.id;
@@ -360,7 +355,6 @@ async function uploadAllPhotos() {
         });
     });
     hideLoadingModal();
-    setStepsSolved(3, true);
 }
 
 async function uploadSinglePhoto(file, personId, token) {
@@ -388,20 +382,13 @@ async function uploadSinglePhoto(file, personId, token) {
 }
 
 async function uploadAllVideos() {
-
-    if (getStepsSolved(4).solved) {
-
+    const files = document.getElementById("videosInput").files;
+    if (files.length === 0 || getStepsSolved(4).solved) {
         loadContent(event, 'content/people.html');
         return;
     }
 
     showLoadingModal();
-
-    const files = document.getElementById("videosInput").files;
-    if (files.length === 0) {
-        alert("Por favor, selecciona al menos un video antes de continuar.");
-        return;
-    }
 
     const uploadedVideosContainer = document.getElementById("uploadedVideos");
     uploadedVideosContainer.innerHTML = "";
@@ -480,4 +467,9 @@ async function uploadSingleVideo(file, personId, token) {
         console.error("Error al subir el video:", error);
         return {success: false, error: error, fileName: file.name};
     }
+}
+
+function sendAllPhotos(){
+    nextStep(5);
+    setStepsSolved(3, true);
 }

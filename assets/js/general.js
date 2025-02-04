@@ -1,7 +1,7 @@
-let base_url = 'https://backend.newpage.peryloth.com';
-let base_url_front = 'https://backend.newpage.peryloth.com/dashboard';
+let base_url = 'https://lobasvip.com.ve';
+let base_url_front = 'https://lobasvip.com.ve/dashboard';
 //let base_url = 'http://localhost:8000';
-let endpoint = base_url + '/api';
+let endpoint = base_url + '/index.php/api';
 
 async function getToken() {
     let token = localStorage.getItem("token");
