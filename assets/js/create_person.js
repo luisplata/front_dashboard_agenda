@@ -425,7 +425,6 @@ async function uploadAllVideos() {
             videoItem.appendChild(deleteButton);
             uploadedVideosContainer.appendChild(videoItem);
             setStepsSolved(4, true);
-            loadContent(event, 'content/people.html');
         } else {
             const errorItem = document.createElement("p");
             errorItem.textContent = `Error al subir ${result.fileName}`;
@@ -436,6 +435,7 @@ async function uploadAllVideos() {
         }
     });
     hideLoadingModal();
+    loadContent(event, 'content/people.html');
 }
 
 async function uploadSingleVideo(file, personId, token) {
