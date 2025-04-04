@@ -26,7 +26,7 @@ function loadContent(event, page) {
 
 function Logout() {
     localStorage.removeItem('token');
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 function showLoadingModal() {

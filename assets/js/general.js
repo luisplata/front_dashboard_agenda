@@ -12,11 +12,11 @@ async function getToken() {
         if (tokenValid) {
             return token;
         } else {
-            window.location.href = "login.html";
+            window.location.href = "index.html";
             return null;
         }
     } else {
-        window.location.href = "login.html";
+        window.location.href = "index.html";
         return null;
     }
 }
