@@ -15,18 +15,18 @@ function create_person_init() {
     resetStepsSolved();
 }
 
-function getStepsSolved(index) {
-    return JSON.parse(localStorage.getItem("stepsSolved"))[index];
+function getStepsSolved(index, key = "stepsSolved") {
+    return JSON.parse(localStorage.getItem(key))[index];
 }
 
-function setStepsSolved(index, value) {
-    let stepsSolved = JSON.parse(localStorage.getItem("stepsSolved"));
+function setStepsSolved(index, value, key = "stepsSolved") {
+    let stepsSolved = JSON.parse(localStorage.getItem(key));
     stepsSolved[index] = {solved: value};
-    localStorage.setItem("stepsSolved", JSON.stringify(stepsSolved));
+    localStorage.setItem(key, JSON.stringify(stepsSolved));
 }
 
-function resetStepsSolved() {
-    localStorage.setItem("stepsSolved", JSON.stringify([
+function resetStepsSolved(key = "stepsSolved") {
+    localStorage.setItem(key, JSON.stringify([
         {solved: false},
         {solved: false},
         {solved: false},
@@ -383,10 +383,6 @@ async function uploadSinglePhoto(file, personId, token) {
 
 async function uploadAllVideos() {
     const files = document.getElementById("videosInput").files;
-    if (files.length === 0 || getStepsSolved(4).solved) {
-        loadContent(event, 'content/people.html');
-        return;
-    }
 
     showLoadingModal();
 
@@ -439,7 +435,7 @@ async function uploadAllVideos() {
             document.getElementById("videosInput").value = "";
         }
     });
-
+    hideLoadingModal();
 }
 
 async function uploadSingleVideo(file, personId, token) {
@@ -469,7 +465,7 @@ async function uploadSingleVideo(file, personId, token) {
     }
 }
 
-function sendAllPhotos(){
+function sendAllPhotos() {
     nextStep(5);
     setStepsSolved(3, true);
 }

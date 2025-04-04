@@ -18,7 +18,8 @@ async function people_init() {
                         <td>${person.id}</td>
                         <td>${person.nombre}</td>
                         <td>
-                            <button class="btn btn-info btn-sm" onclick="loadContent(event, 'content/person_details.html?id=${person.id}')">Ver</button>
+                            <button class="btn btn-success btn-sm" onclick="loadContent(event, 'content/person_details.html?id=${person.id}')">Ver</button>
+                            <button class="btn btn-info btn-sm" onclick="loadContent(event, 'content/person_edit.html?id=${person.id}')">Editar</button>
                             <button class="btn btn-danger btn-sm" onclick="eliminarPersona(${person.id}, '${token}')">Eliminar</button>
                         </td>
                     `;
