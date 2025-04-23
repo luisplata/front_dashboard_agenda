@@ -73,7 +73,17 @@ function Login(user, password) {
 
             ValidateToken(data.token).then(isValid => {
                 if (isValid) {
-                    window.location.href = "dashboard.html";
+                    switch (data.profile) {
+                        case "Admin":
+                            window.location.href = "dashboard.html";
+                            break;
+                        case "Model":
+                            window.location.href = "model_dashboard.html";
+                            break;
+                        default:
+                            alert("Credenciales invalidas");
+                            break;
+                    }
                 } else {
                     alert("Credenciales invalidas");
                 }
